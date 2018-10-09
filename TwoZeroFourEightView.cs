@@ -59,6 +59,7 @@ namespace twozerofoureight
         }
         private void UpdateBoard(int[,] board)
         {
+            int sum = 0;
             UpdateTile(lbl00,board[0, 0]);
             UpdateTile(lbl01,board[0, 1]);
             UpdateTile(lbl02,board[0, 2]);
@@ -75,6 +76,22 @@ namespace twozerofoureight
             UpdateTile(lbl31,board[3, 1]);
             UpdateTile(lbl32,board[3, 2]);
             UpdateTile(lbl33,board[3, 3]);
+            label1.Text = sum.ToString();
+            for(int i = 0 ; i<4 ; i++)
+            {
+                for(int j = 0 ; j<4 ; j++)
+                {
+                    sum += board[i, j];
+                }
+            }
+            label1.Text = sum.ToString();
+            for(int i = 0; i < 4; i++)
+            {
+                for(int j = 0; j < 4; j++)
+                {
+                    
+                }
+            }
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
@@ -96,6 +113,24 @@ namespace twozerofoureight
         {
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
         }
-
+        private void key_Down(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.A)
+            {
+                btnLeft.PerformClick();
+            }
+            if (e.KeyCode == Keys.D)
+            {
+                btnRight.PerformClick();
+            }
+            if (e.KeyCode == Keys.W)
+            {
+                btnUp.PerformClick();
+            }
+            if (e.KeyCode == Keys.S)
+            {
+                btnDown.PerformClick();
+            }
+        }
     }
 }

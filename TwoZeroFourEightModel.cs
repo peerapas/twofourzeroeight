@@ -39,6 +39,7 @@ namespace twozerofoureight
 
         private int[,] Random(int[,] input)
         {
+            int count = 0;
             while (true)
             {
                 int x = rand.Next(boardSize);
@@ -46,6 +47,14 @@ namespace twozerofoureight
                 if (board[x, y] == 0)
                 {
                     board[x, y] = 2;
+                    break;
+                }
+                if(board[x, y]!=0)
+                {
+                    count++;
+                }
+                if(count == 16)
+                {
                     break;
                 }
             }
