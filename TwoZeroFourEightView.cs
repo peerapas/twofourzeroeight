@@ -85,11 +85,11 @@ namespace twozerofoureight
                 }
             }
             label1.Text = sum.ToString();
-            for(int i = 0; i < 4; i++)
+            if (((TwoZeroFourEightModel)model).BoardFull(board))
             {
-                for(int j = 0; j < 4; j++)
+                if (!((TwoZeroFourEightModel)model).MoveAble(board))
                 {
-                    
+                    MessageBox.Show("Game Over");
                 }
             }
         }
@@ -113,24 +113,30 @@ namespace twozerofoureight
         {
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
         }
-        private void key_Down(object sender, KeyEventArgs e)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if(e.KeyCode == Keys.A)
-            {
-                btnLeft.PerformClick();
-            }
-            if (e.KeyCode == Keys.D)
+            if (keyData == (Keys.Right))
             {
                 btnRight.PerformClick();
+                return true;
             }
-            if (e.KeyCode == Keys.W)
+            if (keyData == (Keys.Left))
+            {
+                btnLeft.PerformClick();
+                return true;
+            }
+            if (keyData == (Keys.Up))
             {
                 btnUp.PerformClick();
+                return true;
             }
-            if (e.KeyCode == Keys.S)
+            if (keyData == (Keys.Down))
             {
                 btnDown.PerformClick();
+                return true;
             }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
+        
     }
 }
